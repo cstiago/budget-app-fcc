@@ -10,13 +10,18 @@ class Category:
         return 0
 
     def get_balance(self):
-        return 0
+        balance = float()
+
+        for operation in self.ledger:
+            balance += operation['amount']
+
+        return balance
 
     def transfer(self, amount, destination):
         return 0
 
     def check_funds(self, amount):
-        return 0
+        return True if amount <= self.get_balance() else False
 
 def create_spend_chart(categories):
     return 0

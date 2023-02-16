@@ -10,15 +10,15 @@ class Category:
         })
 
     def withdraw(self, amount, description=str()):
-        funds = bool(self.check_funds(amount))
+        enough_funds = bool(self.check_funds(amount))
 
-        if funds:
+        if enough_funds:
             self.ledger.append({
                 'amount': -amount,
                 'description': description
             })
         
-        return funds
+        return enough_funds
 
     def get_balance(self):
         balance = float()
@@ -29,13 +29,13 @@ class Category:
         return balance
 
     def transfer(self, amount, destination):
-        funds = bool(self.check_funds(amount))
+        enough_funds = bool(self.check_funds(amount))
         
-        if funds:
+        if enough_funds:
             self.withdraw(amount, 'Transfer to ' + destination.category)
             destination.deposit(amount, 'Transfer from ' + self.category)
         
-        return funds
+        return enough_funds
 
     def check_funds(self, amount):
         return True if amount <= self.get_balance() else False

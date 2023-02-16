@@ -2,6 +2,22 @@ class Category:
     def __init__(self, category):
         self.category = category
         self.ledger = list()
+    
+    def __str__(self):
+        lines = str()
+        sum = float()
+
+        title = self.category
+        title = title.center(30, '*')
+
+        for operation in self.ledger:
+            lines += operation['description'][:23].ljust(23) + format(operation['amount'], '.2f')[:7].rjust(7) + '\n'
+            sum += operation['amount']
+
+        total = 'Total: ' + format(sum, '.2f')
+        string = '\n'.join([title, lines[:-1], total])
+
+        return string
 
     def deposit(self, amount, description=str()):
         self.ledger.append({

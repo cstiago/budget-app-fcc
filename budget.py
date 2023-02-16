@@ -29,7 +29,13 @@ class Category:
         return balance
 
     def transfer(self, amount, destination):
-        return 0
+        funds = bool(self.check_funds(amount))
+        
+        if funds:
+            self.withdraw(amount, 'Transfer to ' + destination.category)
+            destination.deposit(amount, 'Transfer from ' + self.category)
+        
+        return funds
 
     def check_funds(self, amount):
         return True if amount <= self.get_balance() else False

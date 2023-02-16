@@ -4,10 +4,21 @@ class Category:
         self.ledger = list()
 
     def deposit(self, amount, description=str()):
-        return 0
+        self.ledger.append({
+            'amount': amount,
+            'description': description
+        })
 
     def withdraw(self, amount, description=str()):
-        return 0
+        funds = bool(self.check_funds(amount))
+
+        if funds:
+            self.ledger.append({
+                'amount': -amount,
+                'description': description
+            })
+        
+        return funds
 
     def get_balance(self):
         balance = float()

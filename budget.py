@@ -88,7 +88,7 @@ def create_spend_chart(categories):
                 bars[j].append(' ' * 3)
     
     for label in bars:
-        chart += ''.join(label) + '\n'
+        chart += ''.join(label) + ' \n'
     
     chart += (' ' * 4) + ('-' * 3 * len(categories)) + '-\n'
 
@@ -103,4 +103,4 @@ def create_spend_chart(categories):
         
         chart += ' \n'
 
-    return chart
+    return chart[:-1]

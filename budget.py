@@ -59,18 +59,24 @@ class Category:
 def create_spend_chart(categories):
     chart = 'Percentage spent by category\n'
     label = 100
-    bars = list()
-    expenses = list()
+    bars, expenses, percentages = list(), list(), list()
 
     while label >= 0:
         bars.append([label, str(label).rjust(3) + '|'])
         label -= 10
-    
+
     for index, category in enumerate(categories):
         expenses.append(0)
         
         for operation in category.ledger:
             if operation['amount'] < 0:
                 expenses[index] += operation['amount'] * (-1)
+    
+    total = sum(expenses)
+
+    for index, category in enumerate(categories):
+        percentage = (100 * expenses[index]) / total
+        rounded = (percentage // 10) * 10
+        percentages.append(rounded)
 
     return chart

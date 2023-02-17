@@ -81,9 +81,14 @@ def create_spend_chart(categories):
         percentages.append(rounded)
 
         for j, label in enumerate(bars):
-            if percentages[i] == int(label[0][:-1]):
+            if percentages[i] >= int(label[0][:-1]):
                 bars[j].append(' o ')
             else:
                 bars[j].append(' ' * 3)
     
+    for label in bars:
+        chart += ''.join(label) + '\n'
+    
+    chart += (' ' * 4) + ('-' * 3 * len(categories)) + '-'
+
     return chart

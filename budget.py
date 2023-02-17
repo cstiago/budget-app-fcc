@@ -1,13 +1,13 @@
 class Category:
-    def __init__(self, category):
-        self.category = category
+    def __init__(self, name):
+        self.name = name
         self.ledger = list()
     
     def __str__(self):
         lines = str()
         sum = float()
 
-        title = self.category
+        title = self.name
         title = title.center(30, '*')
 
         for operation in self.ledger:
@@ -48,8 +48,8 @@ class Category:
         enough_funds = bool(self.check_funds(amount))
         
         if enough_funds:
-            self.withdraw(amount, 'Transfer to ' + destination.category)
-            destination.deposit(amount, 'Transfer from ' + self.category)
+            self.withdraw(amount, 'Transfer to ' + destination.name)
+            destination.deposit(amount, 'Transfer from ' + self.name)
         
         return enough_funds
 

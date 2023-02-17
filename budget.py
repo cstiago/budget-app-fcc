@@ -57,4 +57,20 @@ class Category:
         return True if amount <= self.get_balance() else False
 
 def create_spend_chart(categories):
-    return 0
+    chart = 'Percentage spent by category\n'
+    label = 100
+    bars = list()
+    expenses = list()
+
+    while label >= 0:
+        bars.append([label, str(label).rjust(3) + '|'])
+        label -= 10
+    
+    for index, category in enumerate(categories):
+        expenses.append(0)
+        
+        for operation in category.ledger:
+            if operation['amount'] < 0:
+                expenses[index] += operation['amount'] * (-1)
+
+    return chart

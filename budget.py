@@ -15,9 +15,9 @@ class Category:
             sum += operation['amount']
 
         total = 'Total: ' + format(sum, '.2f')
-        string = '\n'.join([title, lines[:-1], total])
+        text = '\n'.join([title, lines[:-1], total])
 
-        return string
+        return text
 
     def deposit(self, amount, description=str()):
         self.ledger.append({
